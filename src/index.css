@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Modern SaaS palette - TickTick/Linear inspired */
+    --background: 45 30% 97%;
+    --foreground: 160 25% 15%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 160 25% 15%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 25% 15%;
+    
+    --primary: 158 40% 28%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 45 20% 92%;
+    --secondary-foreground: 160 20% 25%;
+    
+    --muted: 45 15% 94%;
+    --muted-foreground: 160 10% 45%;
+    
+    --accent: 158 35% 92%;
+    --accent-foreground: 158 40% 22%;
+    
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 45 15% 88%;
+    --input: 45 15% 88%;
+    --ring: 158 40% 28%;
+    
+    --radius: 0.5rem;
+    
+    /* Stage colors - Subtle and modern */
+    --stage-fajr: 215 70% 55%;
+    --stage-fajr-bg: 215 70% 96%;
+    --stage-dhuhr: 45 85% 52%;
+    --stage-dhuhr-bg: 45 85% 96%;
+    --stage-asr: 28 75% 55%;
+    --stage-asr-bg: 28 75% 96%;
+    --stage-maghrib: 12 72% 52%;
+    --stage-maghrib-bg: 12 72% 96%;
+    --stage-isha: 255 55% 50%;
+    --stage-isha-bg: 255 55% 96%;
+    
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 160 25% 15%;
+    --sidebar-primary: 158 40% 28%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 20% 96%;
+    --sidebar-accent-foreground: 160 20% 25%;
+    --sidebar-border: 45 15% 92%;
+    --sidebar-ring: 158 40% 28%;
+  }
+
+  .dark {
+    --background: 160 15% 8%;
+    --foreground: 45 20% 95%;
+    
+    --card: 160 12% 12%;
+    --card-foreground: 45 20% 95%;
+    
+    --popover: 160 12% 12%;
+    --popover-foreground: 45 20% 95%;
+    
+    --primary: 158 45% 50%;
+    --primary-foreground: 160 15% 8%;
+    
+    --secondary: 160 12% 18%;
+    --secondary-foreground: 45 20% 90%;
+    
+    --muted: 160 10% 16%;
+    --muted-foreground: 45 12% 55%;
+    
+    --accent: 158 25% 18%;
+    --accent-foreground: 158 40% 75%;
+    
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 160 10% 20%;
+    --input: 160 10% 20%;
+    --ring: 158 45% 50%;
+    
+    /* Stage colors - Dark mode */
+    --stage-fajr: 215 65% 60%;
+    --stage-fajr-bg: 215 40% 15%;
+    --stage-dhuhr: 45 80% 55%;
+    --stage-dhuhr-bg: 45 50% 15%;
+    --stage-asr: 28 70% 58%;
+    --stage-asr-bg: 28 45% 15%;
+    --stage-maghrib: 12 68% 55%;
+    --stage-maghrib-bg: 12 45% 15%;
+    --stage-isha: 255 50% 55%;
+    --stage-isha-bg: 255 35% 15%;
+    
+    /* Sidebar - Dark */
+    --sidebar-background: 160 15% 10%;
+    --sidebar-foreground: 45 20% 95%;
+    --sidebar-primary: 158 45% 50%;
+    --sidebar-primary-foreground: 160 15% 8%;
+    --sidebar-accent: 160 12% 15%;
+    --sidebar-accent-foreground: 45 20% 90%;
+    --sidebar-border: 160 10% 18%;
+    --sidebar-ring: 158 45% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full hover:bg-muted-foreground/30;
+  }
+}
+
+@layer components {
+  /* Stage column styles */
+  .stage-column {
+    @apply rounded-xl p-3 min-h-[400px] transition-colors duration-200;
+  }
+  
+  .stage-fajr { background: hsl(var(--stage-fajr-bg)); }
+  .stage-dhuhr { background: hsl(var(--stage-dhuhr-bg)); }
+  .stage-asr { background: hsl(var(--stage-asr-bg)); }
+  .stage-maghrib { background: hsl(var(--stage-maghrib-bg)); }
+  .stage-isha { background: hsl(var(--stage-isha-bg)); }
+  
+  .stage-dot-fajr { background: hsl(var(--stage-fajr)); }
+  .stage-dot-dhuhr { background: hsl(var(--stage-dhuhr)); }
+  .stage-dot-asr { background: hsl(var(--stage-asr)); }
+  .stage-dot-maghrib { background: hsl(var(--stage-maghrib)); }
+  .stage-dot-isha { background: hsl(var(--stage-isha)); }
+  
+  .stage-text-fajr { color: hsl(var(--stage-fajr)); }
+  .stage-text-dhuhr { color: hsl(var(--stage-dhuhr)); }
+  .stage-text-asr { color: hsl(var(--stage-asr)); }
+  .stage-text-maghrib { color: hsl(var(--stage-maghrib)); }
+  .stage-text-isha { color: hsl(var(--stage-isha)); }
+  
+  /* Task card */
+  .task-card {
+    @apply bg-card rounded-lg p-3 shadow-sm border border-border/50 cursor-pointer;
+    @apply hover:shadow-md hover:border-border transition-all duration-200;
+  }
+  
+  .task-card.dragging {
+    @apply shadow-lg rotate-1 scale-[1.02];
+  }
+  
+  /* Priority badges */
+  .priority-high {
+    @apply bg-destructive/10 text-destructive;
+  }
+  
+  .priority-medium {
+    @apply bg-amber-500/10 text-amber-600 dark:text-amber-400;
+  }
+  
+  .priority-low {
+    @apply bg-muted text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  .hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-0.5;
+  }
+  
+  .glass {
+    @apply bg-white/80 dark:bg-card/80 backdrop-blur-lg;
+  }
+  
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* react-big-calendar theme overrides */
+.waqt-calendar .rbc-calendar {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.waqt-calendar .rbc-header {
+  @apply text-xs font-medium text-muted-foreground py-2 border-border;
+}
+
+.waqt-calendar .rbc-month-view,
+.waqt-calendar .rbc-time-view {
+  @apply border-border rounded-lg overflow-hidden;
+}
+
+.waqt-calendar .rbc-month-row + .rbc-month-row,
+.waqt-calendar .rbc-day-bg + .rbc-day-bg,
+.waqt-calendar .rbc-header + .rbc-header {
+  @apply border-border;
+}
+
+.waqt-calendar .rbc-off-range-bg {
+  background: hsl(var(--muted) / 0.3);
+}
+
+.waqt-calendar .rbc-today {
+  background: hsl(var(--primary) / 0.06);
+}
+
+.waqt-calendar .rbc-event {
+  @apply text-xs px-1.5 py-0.5 rounded;
+}
+
+.waqt-calendar .rbc-event.rbc-selected {
+  @apply ring-2 ring-ring ring-offset-1;
+}
+
+.waqt-calendar .rbc-show-more {
+  @apply text-xs text-primary font-medium;
+}
+
+.waqt-calendar .rbc-time-header-content,
+.waqt-calendar .rbc-time-content {
+  @apply border-border;
+}
+
+.waqt-calendar .rbc-timeslot-group {
+  @apply border-border;
+}
+
+.waqt-calendar .rbc-time-slot {
+  @apply text-[10px] text-muted-foreground;
+}
+
+.waqt-calendar .rbc-current-time-indicator {
+  @apply bg-primary;
+}
+
+.waqt-calendar .rbc-day-slot .rbc-time-slot {
+  @apply border-border/50;
+}
+
+.waqt-calendar .rbc-allday-cell {
+  @apply border-border;
+}
+
+.waqt-calendar .rbc-date-cell {
+  @apply text-xs p-1 text-foreground;
+}
+
+.waqt-calendar .rbc-date-cell.rbc-now {
+  @apply font-bold text-primary;
+}
+
+.waqt-calendar .rbc-toolbar button {
+  @apply text-sm;
+}
+
+.waqt-calendar .rbc-overlay {
+  @apply bg-card border border-border rounded-lg shadow-lg p-2;
+}
+
+.waqt-calendar .rbc-overlay-header {
+  @apply text-sm font-medium text-foreground border-border;
+}
+
+.dark .waqt-calendar .rbc-off-range-bg {
+  background: hsl(var(--muted) / 0.2);
+}
+
+.dark .waqt-calendar .rbc-header,
+.dark .waqt-calendar .rbc-month-view,
+.dark .waqt-calendar .rbc-time-view,
+.dark .waqt-calendar .rbc-month-row + .rbc-month-row,
+.dark .waqt-calendar .rbc-day-bg + .rbc-day-bg {
+  border-color: hsl(var(--border));
+}
