@@ -66,15 +66,15 @@ export function TopBar() {
   };
 
   return (
-    <header className="h-14 bg-card border-b border-border px-4 flex items-center justify-between sticky top-0 z-40 relative">
-      {/* Left: Logo */}
-      <div className="flex items-center">
-        <Logo className="h-6 w-auto text-[#6EE7B7] dark:text-white/90" />
+    <header className="h-14 bg-card border-b border-border px-4 flex items-center justify-between sticky top-0 z-40">
+      {/* Left: Logo with proper spacing */}
+      <div className="flex items-center pl-0">
+        <Logo className="h-5 w-auto text-[#6EE7B7] dark:text-white/90" />
       </div>
 
-      {/* Center: Date (Absolute to ensure true center) */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-        <span className="text-sm font-medium leading-none mb-[2px]">{format(today, 'EEEE, MMMM d')}</span>
+      {/* Center: Date Information with proper typography hierarchy */}
+      <div className="flex flex-col items-center gap-[2px]">
+        <span className="text-sm font-medium leading-none">{format(today, 'EEEE, MMMM d')}</span>
         <span className="text-xs font-normal opacity-70 leading-none">
           {hijriDate.day} {hijriDate.month} {hijriDate.year} AH
         </span>

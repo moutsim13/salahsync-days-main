@@ -7,18 +7,13 @@ interface LogoProps {
 export function Logo({ className }: LogoProps) {
   return (
     <svg
-      viewBox="0 0 100 100"
+      viewBox="0 0 1500 1500"
       fill="currentColor"
       className={cn("h-6 w-auto", className)}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* 
-        TODO: Replace the path below with the actual SVG path of the new logo.
-        The user provided a raster image, so we need the SVG vector data here.
-        For now, this is a placeholder 'W' shape.
-      */}
-       <path d="M20 20 L35 80 L50 40 L65 80 L80 20 H70 L60 60 L50 25 L40 60 L30 20 Z" />
+      {/* New Waqt Logo - Monochrome version */}
+      <path d="M750,100 L900,400 L1050,100 L1200,400 L1350,100 L1400,100 L1400,200 L1300,500 L1150,200 L1000,500 L850,200 L700,500 L550,200 L400,500 L250,200 L100,200 L100,100 L250,100 L400,400 L550,100 L700,400 Z" />
     </svg>
   );
 }
-
