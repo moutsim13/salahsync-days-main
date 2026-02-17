@@ -66,28 +66,23 @@ export function TopBar() {
   };
 
   return (
-    <header className="h-14 bg-card border-b border-border px-4 flex items-center justify-between sticky top-0 z-40">
-      {/* Left: Logo & Date */}
-      <div className="flex items-center gap-6">
-        <div className="flex items-center gap-2">
-          <Logo showText={false} />
-          <span className="font-semibold text-lg hidden sm:block">Waqt</span>
-          <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#2A9D8F]/90 text-white opacity-90">
-            Beta
-          </span>
-        </div>
-
-        <div className="hidden md:flex flex-col">
-          <span className="text-sm font-medium">{format(today, 'EEEE, MMMM d')}</span>
-          <span className="text-xs text-muted-foreground">
-            {hijriDate.day} {hijriDate.month} {hijriDate.year} AH
-          </span>
-        </div>
+    <header className="h-14 bg-card border-b border-border px-4 flex items-center justify-between sticky top-0 z-40 relative">
+      {/* Left: Logo */}
+      <div className="flex items-center">
+        <Logo className="h-6 w-auto text-[#6EE7B7] dark:text-white/90" />
       </div>
 
-      {/* Center: Next Prayer & Progress */}
-      <div className="flex items-center gap-6">
-        {/* Next Prayer Countdown */}
+      {/* Center: Date (Absolute to ensure true center) */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+        <span className="text-sm font-medium leading-none mb-[2px]">{format(today, 'EEEE, MMMM d')}</span>
+        <span className="text-xs font-normal opacity-70 leading-none">
+          {hijriDate.day} {hijriDate.month} {hijriDate.year} AH
+        </span>
+      </div>
+
+      {/* Right: Everything else */}
+      <div className="flex items-center gap-4">
+        {/* Next Prayer Countdown - Moved to right */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -100,8 +95,8 @@ export function TopBar() {
           </div>
         </motion.div>
 
-        {/* Daily Progress */}
-        <div className="hidden sm:flex items-center gap-2">
+        {/* Daily Progress - Moved to right */}
+        <div className="hidden lg:flex items-center gap-2">
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary">
             <Flame size={16} className="text-muted-foreground" />
             <span className="text-sm font-medium">
@@ -117,38 +112,38 @@ export function TopBar() {
             />
           </div>
         </div>
-      </div>
 
-      {/* Right: Search & Settings */}
-      <div className="flex items-center gap-2">
-        <div className="relative hidden md:block">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            type="text"
-            placeholder="Search tasks..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-48 pl-9 h-9 bg-secondary border-0 focus-visible:ring-1"
-          />
+        {/* Search & Settings */}
+        <div className="flex items-center gap-2 border-l pl-2 border-border ml-2">
+          <div className="relative hidden xl:block">
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-40 pl-9 h-9 bg-secondary border-0 focus-visible:ring-1"
+            />
+          </div>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className="h-9 w-9"
+          >
+            {settings.theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </Button>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate('/settings')}
+            className="h-9 w-9"
+          >
+            <Settings size={18} />
+          </Button>
         </div>
-
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={toggleTheme}
-          className="h-9 w-9"
-        >
-          {settings.theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-        </Button>
-
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => navigate('/settings')}
-          className="h-9 w-9"
-        >
-          <Settings size={18} />
-        </Button>
       </div>
     </header>
   );
