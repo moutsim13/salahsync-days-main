@@ -40,6 +40,7 @@ svg_content = svg_content.replace('xmlns:xlink="http://www.w3.org/1999/xlink"', 
 # 6. Construct Logo.tsx content
 tsx_content = f"""import {{ cn }} from '@/lib/utils';
 
+
 interface LogoProps {{
   className?: string;
 }}

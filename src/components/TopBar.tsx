@@ -67,35 +67,30 @@ export function TopBar() {
 
   return (
     <header className="h-14 bg-card border-b border-border px-4 flex items-center justify-between sticky top-0 z-40">
-      {/* Left: Logo with proper spacing */}
-      <div className="flex items-center pl-0">
-        <Logo className="h-5 w-auto text-[#6EE7B7] dark:text-white/90" />
-      </div>
-
-      {/* Center: Date Information with proper typography hierarchy */}
-      <div className="flex flex-col items-center gap-[2px]">
+      {/* Left: Date Information */}
+      <div className="flex flex-col items-start gap-[2px]">
         <span className="text-sm font-medium leading-none">{format(today, 'EEEE, MMMM d')}</span>
         <span className="text-xs font-normal opacity-70 leading-none">
           {hijriDate.day} {hijriDate.month} {hijriDate.year} AH
         </span>
       </div>
 
+      {/* Center: Next Prayer Countdown */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10"
+      >
+        <Timer size={16} className="text-primary" />
+        <div className="flex items-center gap-1.5">
+          <span className="text-sm font-medium text-primary">{nextPrayerName}</span>
+          <span className="text-sm font-mono text-primary/80">{countdown}</span>
+        </div>
+      </motion.div>
+
       {/* Right: Everything else */}
       <div className="flex items-center gap-4">
-        {/* Next Prayer Countdown - Moved to right */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10"
-        >
-          <Timer size={16} className="text-primary" />
-          <div className="flex items-center gap-1.5">
-            <span className="text-sm font-medium text-primary">{nextPrayerName}</span>
-            <span className="text-sm font-mono text-primary/80">{countdown}</span>
-          </div>
-        </motion.div>
-
-        {/* Daily Progress - Moved to right */}
+        {/* Daily Progress */}
         <div className="hidden lg:flex items-center gap-2">
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary">
             <Flame size={16} className="text-muted-foreground" />
