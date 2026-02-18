@@ -34,6 +34,8 @@ const App = () => (
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/completed" element={<CompletedPage />} />
             <Route path="/trash" element={<TrashPage />} />
+            <Route path="/inbox" element={<NotFound />} />
+            <Route path="/list/:id" element={<NotFound />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

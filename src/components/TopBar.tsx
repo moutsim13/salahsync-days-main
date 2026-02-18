@@ -66,7 +66,7 @@ export function TopBar() {
   };
 
   return (
-    <header className="h-14 bg-card border-b border-border px-4 flex items-center justify-between sticky top-0 z-40">
+    <header className="relative h-14 bg-card border-b border-border px-4 flex items-center justify-between sticky top-0 z-40">
       {/* Left: Date Information */}
       <div className="flex flex-col items-start gap-[2px]">
         <span className="text-sm font-medium leading-none">{format(today, 'EEEE, MMMM d')}</span>
@@ -75,21 +75,30 @@ export function TopBar() {
         </span>
       </div>
 
-      {/* Center: Next Prayer Countdown */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10"
-      >
-        <Timer size={16} className="text-primary" />
-        <div className="flex items-center gap-1.5">
-          <span className="text-sm font-medium text-primary">{nextPrayerName}</span>
-          <span className="text-sm font-mono text-primary/80">{countdown}</span>
-        </div>
-      </motion.div>
+      {/* Quran Verse: stylized Arabic text shifted further left to avoid overlap */}
+      <div className="absolute left-[35%] -translate-x-1/2 whitespace-nowrap">
+        <span 
+          className="text-xl font-medium text-primary/90 opacity-90 select-none pb-1"
+          style={{ fontFamily: "'Amiri', serif" }}
+        >
+          ﴾إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا﴿
+        </span>
+      </div>
+
 
       {/* Right: Everything else */}
       <div className="flex items-center gap-4">
+        {/* Prayer Countdown */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10"
+        >
+          <Timer size={15} className="text-primary" />
+          <span className="text-sm font-medium text-primary">{nextPrayerName}</span>
+          <span className="text-sm font-mono text-primary/80">{countdown}</span>
+        </motion.div>
+
         {/* Daily Progress */}
         <div className="hidden lg:flex items-center gap-2">
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary">
