@@ -67,12 +67,22 @@ export function TopBar() {
 
   return (
     <header className="relative h-14 bg-card border-b border-border px-4 flex items-center justify-between sticky top-0 z-40">
-      {/* Left: Date Information */}
-      <div className="flex flex-col items-start gap-[2px]">
-        <span className="text-sm font-medium leading-none">{format(today, 'EEEE, MMMM d')}</span>
-        <span className="text-xs font-normal opacity-70 leading-none">
-          {hijriDate.day} {hijriDate.month} {hijriDate.year} AH
-        </span>
+      {/* Left: Date Information & Beta Badge */}
+      <div className="flex items-center gap-3">
+        <div className="flex flex-col items-start gap-[2px]">
+          <span className="text-sm font-medium leading-none">{format(today, 'EEEE, MMMM d')}</span>
+          <span className="text-xs font-normal opacity-70 leading-none">
+            {hijriDate.day} {hijriDate.month} {hijriDate.year} AH
+          </span>
+        </div>
+
+        <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-[#2A9D8F]/90 text-white opacity-90 shadow-sm">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-40"></span>
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
+          </span>
+          Beta
+        </div>
       </div>
 
       {/* Quran Verse: stylized Arabic text shifted further left to avoid overlap */}

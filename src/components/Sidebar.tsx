@@ -58,13 +58,9 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex items-center gap-2"
+              className="flex items-center"
             >
-              <Logo className="h-10 w-auto" />
-              <span className="font-semibold text-sidebar-foreground">Waqt</span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#2A9D8F]/90 text-white opacity-90">
-                Beta
-              </span>
+              <Logo className="h-14 w-auto drop-shadow-sm flex-shrink-0" />
             </motion.div>
           )}
         </AnimatePresence>
